@@ -4,8 +4,6 @@ import React from "react";
 const TrustedOrganizations = () => {
   const orgs = [
     {
-
-      
       name: "Feeding Bangladesh",
       logo: "https://i.ibb.co/wNb38pyW/img-4446.jpg",
       url: "https://feedingbangladesh.org",
