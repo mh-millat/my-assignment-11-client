@@ -1,8 +1,3 @@
-
-
-
-
-// today update code
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -52,14 +47,12 @@ const FoodDetails = () => {
     };
   }, [id, user, navigate]);
 
-  // Calculate time left until expiry (human readable)
   const getExpiryCountdown = () => {
     if (!food?.expiryDate) return "";
 
     const expiry = new Date(food.expiryDate);
     const now = new Date();
 
-    // Zero out the time to just compare dates (optional)
     expiry.setHours(0, 0, 0, 0);
     now.setHours(0, 0, 0, 0);
 
@@ -179,7 +172,6 @@ const FoodDetails = () => {
         )}
       </div>
 
-      {/* Notes Section */}
       <div className="bg-white rounded shadow p-6">
         <h3 className="text-xl font-semibold mb-4">Notes</h3>
 
