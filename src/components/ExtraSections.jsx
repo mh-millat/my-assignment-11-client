@@ -19,8 +19,6 @@ const ExtraSections = () => {
           It ensures that you consume food while it is still safe and nutritious.
         </p>
       </motion.div>
-
-      {/* Section 2 */}
       <motion.div
         className="bg-yellow-50 p-5 sm:p-6 md:p-8 rounded-lg shadow-md"
         initial={{ opacity: 0, x: 80 }}
