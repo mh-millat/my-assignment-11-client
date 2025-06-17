@@ -1,8 +1,3 @@
-
-
-
-
-// today update
 import { useEffect, useState } from "react";
 
 const TopFoods = () => {
