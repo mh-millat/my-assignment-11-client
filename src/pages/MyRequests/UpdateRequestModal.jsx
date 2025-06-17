@@ -1,8 +1,3 @@
-
-
-
-
-// today update
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
@@ -48,7 +43,6 @@ const UpdateRequestModal = ({ request, onClose, onUpdate }) => {
     }
   };
 
-  // Close modal on Escape key
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") onClose();
@@ -57,7 +51,6 @@ const UpdateRequestModal = ({ request, onClose, onUpdate }) => {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
-  // Close modal if click outside content
   const handleOuterClick = (e) => {
     if (e.target === e.currentTarget) onClose();
   };
