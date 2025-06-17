@@ -23,7 +23,7 @@ const UpdateRequestModal = ({ request, onClose, onUpdate }) => {
 
     setSubmitting(true);
     try {
-      const res = await fetch(`http://localhost:5000/requests/${request._id}`, {
+      const res = await fetch(`https://my-assignment-11-server-theta.vercel.app/requests/${request._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

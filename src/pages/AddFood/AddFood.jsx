@@ -2,11 +2,14 @@ import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+// import axios from "axios";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  // const axiosSecure = useAxiosSecure();
 
   const handleAddFood = async (e) => {
     e.preventDefault();
@@ -40,7 +43,7 @@ const AddFood = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/foods", {
+      const res = await fetch("https://my-assignment-11-server-theta.vercel.app/foods", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(food),
@@ -61,6 +64,33 @@ const AddFood = () => {
     } finally {
       setLoading(false);
     }
+
+
+
+    // try {
+    //   const response = await axiosSecure.post("/foods", food, {
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   });
+
+    //   if (response.data.insertedId) {
+    //     toast.success("Food added successfully!");
+    //     form.reset();           // Make sure form is defined
+    //     navigate("/my-items");  // Make sure navigate is from useNavigate()
+    //   } else {
+    //     toast.error("Failed to add food.");
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    //   toast.error("An error occurred. Please try again.");
+    // } finally {
+    //   setLoading(false); // Make sure setLoading is a state setter
+    // }
+
+
+
+
   };
 
   return (
@@ -119,9 +149,8 @@ const AddFood = () => {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-2 rounded text-white ${
-            loading ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
-          }`}
+          className={`w-full py-2 rounded text-white ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+            }`}
         >
           {loading ? "Adding..." : "Add Food"}
         </button>

@@ -23,7 +23,7 @@ const FoodDetails = () => {
     let isMounted = true;
     setLoading(true);
 
-    fetch(`http://localhost:5000/foods/${id}`)
+    fetch(`https://my-assignment-11-server-theta.vercel.app/foods/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Food not found");
         return res.json();
@@ -86,7 +86,7 @@ const FoodDetails = () => {
 
   setAddingNote(true);
   try {
-    const response = await fetch(`http://localhost:5000/foods/${id}/notes`, {
+    const response = await fetch(`https://my-assignment-11-server-theta.vercel.app/foods/${id}/notes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ const ExpiringSoon = () => {
   useEffect(() => {
     const fetchExpiringFoods = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/foods/all");
+        const response = await axios.get("https://my-assignment-11-server-theta.vercel.app/foods/all");
 
         const today = new Date();
         const fiveDaysLater = new Date();

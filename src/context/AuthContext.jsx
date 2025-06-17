@@ -47,14 +47,32 @@ const AuthProvider = ({ children }) => {
   };
 
 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, currentUser => {
+  //     setUser(currentUser);
+  //     setLoading(false);
+  //   });
+
+
+  //   return () => unsubscribe();
+  // }, []);
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, currentUser => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+      //post request for jwt  using user email
+      //api end-point: /jwt(poat method)
+      if (currentUser) {
+        const token = await currentUser.getIdToken();
+        //    localStorage.setItem("token", token);
+      } else {
+        // localStorage.removeItem("token");
+      }
       setLoading(false);
     });
+    return () => {
+      unsubscribe();
+    }
 
-
-    return () => unsubscribe();
   }, []);
 
 

@@ -5,7 +5,7 @@ const TopFoods = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/top-foods")
+    fetch("https://my-assignment-11-server-theta.vercel.app/top-foods")
       .then((res) => res.json())
       .then((data) => setFoods(data))
       .catch((err) => console.error("Error fetching top foods:", err))

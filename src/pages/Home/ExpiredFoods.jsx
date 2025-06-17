@@ -9,7 +9,7 @@ const ExpiredFoods = () => {
   useEffect(() => {
     const fetchExpiredFoods = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/foods/expired-public");
+        const response = await axios.get("https://my-assignment-11-server-theta.vercel.app/foods/expired-public");
         setExpiredItems(response.data);
       } catch (err) {
         console.error("Error fetching expired items:", err);

@@ -39,7 +39,7 @@ const UpdateFoodModal = ({ food, onClose, onUpdate }) => {
 
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/foods/${food._id}`, {
+      const res = await fetch(`https://my-assignment-11-server-theta.vercel.app/foods/${food._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

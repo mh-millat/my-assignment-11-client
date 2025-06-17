@@ -70,7 +70,6 @@ const Register = () => {
                     hover:scale-[1.02]">
       <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
       <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Name */}
         <input
           type="text"
           name="name"
@@ -83,7 +82,6 @@ const Register = () => {
                      transition-shadow duration-300
                      focus:outline-none focus:ring-2 focus:ring-green-500"
         />
-        {/* Photo URL */}
         <input
           type="text"
           name="photo"
@@ -96,7 +94,7 @@ const Register = () => {
                      transition-shadow duration-300
                      focus:outline-none focus:ring-2 focus:ring-green-500"
         />
-        {/* Email */}
+
         <input
           type="email"
           name="email"
@@ -109,7 +107,6 @@ const Register = () => {
                      transition-shadow duration-300
                      focus:outline-none focus:ring-2 focus:ring-green-500"
         />
-        {/* Password */}
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
@@ -154,7 +151,6 @@ const Register = () => {
             Must include uppercase, lowercase, number, special character, and 6+ characters
           </small>
         </div>
-        {/* Confirm Password */}
         <div className="relative">
           <input
             type={showConfirmPassword ? "text" : "password"}

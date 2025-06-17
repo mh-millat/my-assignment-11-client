@@ -16,7 +16,7 @@ const MyRequests = () => {
     }
 
     setLoading(true);
-    fetch(`http://localhost:5000/my-requests?email=${user.email}`)
+    fetch(`https://my-assignment-11-server-theta.vercel.app/my-requests?email=${user.email}`)
       .then(res => res.json())
       .then(data => setRequests(data))
       .catch(() => toast.error("Failed to load requests"))
@@ -28,7 +28,7 @@ const MyRequests = () => {
     if (!confirm) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/requests/${id}`, {
+      const res = await fetch(`https://my-assignment-11-server-theta.vercel.app/requests/${id}`, {
         method: "DELETE",
       });
       const result = await res.json();

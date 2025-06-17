@@ -11,7 +11,7 @@ const Fridge = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/fridge")
+    fetch("https://my-assignment-11-server-theta.vercel.app/fridge")
       .then(res => res.json())
       .then(data => setFoods(data))
       .catch(() => setFoods([]))

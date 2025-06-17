@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthContext";
 import UpdateFoodModal from "./UpdateFoodModal";
+// import axios from "axios";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const itemsPerPage = 5;
 
@@ -16,9 +18,10 @@ const MyItems = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+
   const fetchItems = () => {
     if (!user?.email) return;
-    fetch(`http://localhost:5000/foods?email=${user.email}`)
+    fetch(`https://my-assignment-11-server-theta.vercel.app/foods?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -26,6 +29,22 @@ const MyItems = () => {
       })
       .catch(() => toast.error("Failed to fetch items"));
   };
+
+
+  // const fetchItems = () => {
+  //   if (!user?.email) return;
+
+  //   axiosSecure.get(`/foods`, {
+  //     params: { email: user.email }
+  //   })
+  //     .then((response) => {
+  //       setItems(response.data);
+  //       setFilteredItems(response.data);
+  //     })
+  //     .catch(() => {
+  //       toast.error("Failed to fetch items");
+  //     });
+  // };
 
   useEffect(() => {
     fetchItems();
@@ -52,7 +71,7 @@ const MyItems = () => {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/foods/${id}`, {
+      const res = await fetch(`https://my-assignment-11-server-theta.vercel.app/foods/${id}`, {
         method: "DELETE",
       });
       const result = await res.json();
@@ -158,11 +177,10 @@ const MyItems = () => {
             <button
               key={i}
               onClick={() => setCurrentPage(i + 1)}
-              className={`px-3 py-1 rounded ${
-                currentPage === i + 1
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700"
-              }`}
+              className={`px-3 py-1 rounded ${currentPage === i + 1
+                ? "bg-green-600 text-white"
+                : "bg-gray-200 text-gray-700"
+                }`}
             >
               {i + 1}
             </button>
