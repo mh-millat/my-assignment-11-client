@@ -18,14 +18,12 @@ const ExpiringSoon = () => {
         const filtered = response.data.filter((item) => {
           if (!item.expiryDate) return false;
           const expiry = new Date(item.expiryDate);
-
-          // ✅ Filter only those that will expire **within next 5 days**
           return expiry > today && expiry <= fiveDaysLater;
         });
 
         setExpiringItems(filtered);
       } catch (err) {
-        console.error("❌ Error fetching soon expiring items:", err);
+        console.error(" Error fetching soon expiring items:", err);
       } finally {
         setLoading(false);
       }
@@ -43,7 +41,7 @@ const ExpiringSoon = () => {
   return (
     <section className="my-10 max-w-6xl mx-auto px-4">
       <h2 className="text-3xl font-bold mb-6 text-orange-600 text-center">
-        🍊 Expiring Soon (Next 5 Days)
+         Expiring Soon (Next 5 Days)
       </h2>
       {expiringItems.length === 0 ? (
         <p className="text-center text-gray-500">
