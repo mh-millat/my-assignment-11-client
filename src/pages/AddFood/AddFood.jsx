@@ -1,7 +1,3 @@
-
-
-
-// today update 100% working
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -18,9 +14,8 @@ const AddFood = () => {
 
     const expiryDateValue = form.expiryDate.value;
 
-    // Timezone-safe expiry date validation
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // midnight today
+    today.setHours(0, 0, 0, 0);
 
     const expiryDate = new Date(expiryDateValue);
     expiryDate.setHours(0, 0, 0, 0);
@@ -38,7 +33,7 @@ const AddFood = () => {
       expiryDate: expiryDateValue,
       description: form.description.value.trim(),
       addedDate: new Date().toISOString(),
-      storage: "Fridge", // Hardcoded
+      storage: "Fridge",
       userEmail: user?.email || "",
     };
 
