@@ -1,7 +1,3 @@
-
-
-
-// today update
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
@@ -19,7 +15,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
-      { index: true, element: <Home /> },  // index route for home
+      { index: true, element: <Home /> },
       { path: "fridge", element: <Fridge /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
