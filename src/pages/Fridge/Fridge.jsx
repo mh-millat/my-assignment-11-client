@@ -20,7 +20,6 @@ const Fridge = () => {
         .finally(() => setLoading(false));
     }
   }, [user]);
-
   const today = new Date();
 
   return (
@@ -68,7 +67,6 @@ const Fridge = () => {
                     Expired
                   </span>
                 )}
-
                 <button
                   onClick={() => navigate(`/food/${food._id}`)}
                   className="mt-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition mt-4"
