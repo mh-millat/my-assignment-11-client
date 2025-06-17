@@ -1,5 +1,3 @@
-
-// export default Home;
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -42,7 +40,6 @@ const slides = [
 const Home = () => {
   return (
     <main>
-      {/* ✅ Banner Section with Text on Top of Image */}
       <section className="relative">
         <Carousel
           showThumbs={false}
@@ -65,7 +62,7 @@ const Home = () => {
       backgroundPosition: "center",
     }}
   >
-    {/* Overlay Content */}
+
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="text-center text-gray-900 md:px-8 py-20 px-6 rounded-2xl shadow-2xl bg-white bg-opacity-80 backdrop-blur-sm">
         <h2 className="text-3xl md:text-5xl font-bold drop-shadow">
