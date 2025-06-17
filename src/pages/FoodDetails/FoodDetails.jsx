@@ -66,43 +66,49 @@ const FoodDetails = () => {
     return `${days} days, ${hours} hrs, ${minutes} mins left`;
   };
 
-  const handleAddNote = () => {
-    if (!newNote.trim()) {
-      toast.error("Note cannot be empty");
-      return;
-    }
+  const handleAddNote = async () => {
+  if (!newNote.trim()) {
+    toast.error("Note cannot be empty");
+    return;
+  }
 
-    if (!user) {
-      toast.error("Please login to add notes.");
-      return;
-    }
+  if (!user) {
+    toast.error("Please login to add notes.");
+    return;
+  }
 
-    const noteData = {
-      text: newNote.trim(),
-      postedAt: new Date().toISOString(),
-      userEmail: user.email,
-      userName: user.displayName || user.email,
-    };
-
-    setAddingNote(true);
-    fetch(`http://localhost:5000/foods/${id}/notes`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(noteData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setNotes((prev) => [...prev, noteData]);
-          setNewNote("");
-          toast.success("Note added!");
-        } else {
-          toast.error(data.message || "Failed to add note");
-        }
-      })
-      .catch(() => toast.error("Error adding note"))
-      .finally(() => setAddingNote(false));
+  const noteData = {
+    text: newNote.trim(),
+    postedAt: new Date().toISOString(),
+    userEmail: user.email,
+    userName: user.displayName || user.email,
   };
+
+  setAddingNote(true);
+  try {
+    const response = await fetch(`http://localhost:5000/foods/${id}/notes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(noteData),
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      setNotes((prev) => [...prev, noteData]);
+      setNewNote("");
+      toast.success("Note added!");
+    } else {
+      toast.error(data.message || "Failed to add note");
+    }
+  } catch (error) {
+    toast.error("Error adding note");
+  } finally {
+    setAddingNote(false);
+  }
+};
+
 
   const handleRequest = () => {
     toast("Request feature coming soon!");
@@ -208,11 +214,10 @@ const FoodDetails = () => {
         <button
           onClick={handleAddNote}
           disabled={!isOwner || addingNote}
-          className={`px-4 py-2 rounded text-white ${
-            isOwner
+          className={`px-4 py-2 rounded text-white ${isOwner
               ? "bg-blue-600 hover:bg-blue-700"
               : "bg-gray-400 cursor-not-allowed"
-          }`}
+            }`}
         >
           {addingNote ? "Adding..." : "Add Note"}
         </button>

@@ -1,8 +1,7 @@
-
-
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Fridge = () => {
   const { user } = useContext(AuthContext);
@@ -11,15 +10,14 @@ const Fridge = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
-      setLoading(true);
-      fetch("http://localhost:5000/fridge")
-        .then(res => res.json())
-        .then(data => setFoods(data))
-        .catch(() => setFoods([]))
-        .finally(() => setLoading(false));
-    }
-  }, [user]);
+    setLoading(true);
+    fetch("http://localhost:5000/fridge")
+      .then(res => res.json())
+      .then(data => setFoods(data))
+      .catch(() => setFoods([]))
+      .finally(() => setLoading(false));
+  }, []);
+
   const today = new Date();
 
   return (
@@ -27,11 +25,9 @@ const Fridge = () => {
       <h2 className="text-2xl font-bold text-center mb-6">All Food Items</h2>
 
       {loading ? (
-        // <p className="text-center text-gray-500">Loading...</p>
         <div className="flex justify-center items-center h-screen">
           <span className="loading loading-bars loading-2xl"></span>
         </div>
-
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {foods.length === 0 && (
@@ -67,8 +63,16 @@ const Fridge = () => {
                     Expired
                   </span>
                 )}
+
                 <button
-                  onClick={() => navigate(`/food/${food._id}`)}
+                  onClick={() => {
+                    if (!user) {
+                      toast("Please log in to see details", { icon: "🔒" });
+                      navigate("/login");
+                    } else {
+                      navigate(`/food/${food._id}`);
+                    }
+                  }}
                   className="mt-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition mt-4"
                 >
                   See Details

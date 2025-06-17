@@ -13,6 +13,9 @@ const Register = () => {
     photo: "",
   });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = e => {
@@ -61,25 +64,13 @@ const Register = () => {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    if (loading) return;
-
-    try {
-      setLoading(true);
-      await googleLogin();
-      toast.success("Google Login Successful!");
-      navigate("/");
-    } catch (error) {
-      toast.error(error.message || "Google Login Failed");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow-md border">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-blue-50 rounded shadow-md border-gray-100
+                    transition-transform duration-300 ease-in-out
+                    hover:scale-[1.02]">
       <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Name */}
         <input
           type="text"
           name="name"
@@ -87,9 +78,12 @@ const Register = () => {
           onChange={handleChange}
           placeholder="Your Name"
           required
-          className="w-full border px-3 py-2 rounded"
           disabled={loading}
+          className="w-full border px-3 py-2 rounded
+                     transition-shadow duration-300
+                     focus:outline-none focus:ring-2 focus:ring-green-500"
         />
+        {/* Photo URL */}
         <input
           type="text"
           name="photo"
@@ -97,9 +91,12 @@ const Register = () => {
           onChange={handleChange}
           placeholder="Photo URL"
           required
-          className="w-full border px-3 py-2 rounded"
           disabled={loading}
+          className="w-full border px-3 py-2 rounded
+                     transition-shadow duration-300
+                     focus:outline-none focus:ring-2 focus:ring-green-500"
         />
+        {/* Email */}
         <input
           type="email"
           name="email"
@@ -107,40 +104,101 @@ const Register = () => {
           onChange={handleChange}
           placeholder="Email"
           required
-          className="w-full border px-3 py-2 rounded"
           disabled={loading}
+          className="w-full border px-3 py-2 rounded
+                     transition-shadow duration-300
+                     focus:outline-none focus:ring-2 focus:ring-green-500"
         />
-        <div>
+        {/* Password */}
+        <div className="relative">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             value={form.password}
             onChange={handleChange}
             placeholder="Password"
             required
-            className="w-full border px-3 py-2 rounded"
             disabled={loading}
+            className="w-full border px-3 py-2 rounded
+                       transition-shadow duration-300
+                       focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
           />
-          <small className="text-gray-500 text-sm block mt-1">
+          <button
+            type="button"
+            onClick={() => setShowPassword(prev => !prev)}
+            tabIndex={-1}
+            className="absolute right-3 top-5 -translate-y-1/2 text-gray-500 hover:text-green-600"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9-4-9-9a8.96 8.96 0 013.764-7.237M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18"/>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+            )}
+          </button>
+          <small
+            className={`text-gray-500 text-sm block mt-1 transition-opacity duration-300
+              ${form.password ? "opacity-100" : "opacity-0"}`}
+          >
             Must include uppercase, lowercase, number, special character, and 6+ characters
           </small>
         </div>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={form.confirmPassword}
-          onChange={handleChange}
-          placeholder="Confirm Password"
-          required
-          className="w-full border px-3 py-2 rounded"
-          disabled={loading}
-        />
+        {/* Confirm Password */}
+        <div className="relative">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            name="confirmPassword"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            placeholder="Confirm Password"
+            required
+            disabled={loading}
+            className="w-full border px-3 py-2 rounded
+                       transition-shadow duration-300
+                       focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
+          />
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(prev => !prev)}
+            tabIndex={-1}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-green-600"
+            aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+          >
+            {showConfirmPassword ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9-4-9-9a8.96 8.96 0 013.764-7.237M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18"/>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+            )}
+          </button>
+        </div>
+
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-2 rounded text-white ${
-            loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          }`}
+          className={`w-full py-2 rounded text-white
+                      ${loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
         >
           {loading ? "Registering..." : "Register"}
         </button>
@@ -158,11 +216,22 @@ const Register = () => {
 
       <div className="text-center mt-6">
         <button
-          onClick={handleGoogleLogin}
+          onClick={async () => {
+            if (loading) return;
+            try {
+              setLoading(true);
+              await googleLogin();
+              toast.success("Google Login Successful!");
+              navigate("/");
+            } catch (error) {
+              toast.error(error.message || "Google Login Failed");
+            } finally {
+              setLoading(false);
+            }
+          }}
           disabled={loading}
-          className={`px-5 py-2 rounded text-white ${
-            loading ? "bg-red-300 cursor-not-allowed" : "bg-red-500 hover:bg-red-600"
-          }`}
+          className={`px-5 py-2 rounded text-white
+                      ${loading ? "bg-red-300 cursor-not-allowed" : "bg-red-500 hover:bg-red-600"}`}
         >
           {loading ? "Processing..." : "Register with Google"}
         </button>
