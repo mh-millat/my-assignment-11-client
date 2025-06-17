@@ -1,8 +1,3 @@
-
-
-
-
-// today update
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -11,7 +6,7 @@ const UpdateFoodModal = ({ food, onClose, onUpdate }) => {
     title: food.title || "",
     quantity: food.quantity || "",
     category: food.category || "",
-    expiryDate: food.expiryDate ? food.expiryDate.split("T")[0] : "", // ensure date input format
+    expiryDate: food.expiryDate ? food.expiryDate.split("T")[0] : "",
     description: food.description || "",
   });
   const [loading, setLoading] = useState(false);
@@ -23,7 +18,6 @@ const UpdateFoodModal = ({ food, onClose, onUpdate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Expiry date validation
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
