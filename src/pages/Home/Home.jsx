@@ -90,10 +90,8 @@ const Home = () => {
         </Carousel>
       </section>
 
-      {/* ✅ Other Sections */}
-      {/* <NearlyExpired /> */}
+
       <ExpiredFoods></ExpiredFoods>
-      {/* <ExpiredItems /> */}
       <ExpiringSoon></ExpiringSoon>
       <TopFoods></TopFoods>
       <TrustedOrgs />
