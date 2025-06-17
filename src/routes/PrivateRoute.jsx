@@ -7,7 +7,6 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
 
-  // Show loading state while auth status is being determined
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -17,12 +16,11 @@ const PrivateRoute = ({ children }) => {
     );
   }
 
-  // Redirect to login if not authenticated, preserving intended route
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  // Render the protected component if authenticated
+
   return children;
 };
 
