@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-// import TrustedOrgs from "../components/TrustedOrgs";
 import Footer from "../components/Footer";
 
 const MainLayout = () => {
@@ -10,7 +9,6 @@ const MainLayout = () => {
       <main className="flex-1">
         <Outlet />
       </main>
-      {/* <TrustedOrgs></TrustedOrgs> */}
       <Footer></Footer>
     </div>
   );
