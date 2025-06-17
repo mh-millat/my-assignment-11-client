@@ -12,7 +12,7 @@ const ExpiredFoods = () => {
         const response = await axios.get("http://localhost:5000/foods/expired-public");
         setExpiredItems(response.data);
       } catch (err) {
-        console.error("❌ Error fetching expired items:", err);
+        console.error("Error fetching expired items:", err);
       } finally {
         setLoading(false);
       }
