@@ -7,7 +7,7 @@ import { Suspense } from "react";
 function App() {
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+      <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
         <Toaster position="top-center" />
         <Suspense
           fallback={

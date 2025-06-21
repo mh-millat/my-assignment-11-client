@@ -94,10 +94,10 @@ const MyItems = () => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-6xl mx-auto px-4 py-10 ">
       <h2 className="text-2xl font-bold mb-6 text-center">My Food Items</h2>
 
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6 dark:bg-gray-600">
         <input
           type="text"
           placeholder="Search by title"
@@ -118,9 +118,9 @@ const MyItems = () => {
         </select>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white rounded shadow">
-          <thead className="bg-gray-100">
+      <div className="overflow-x-auto dark:bg-gray-600">
+        <table className="min-w-full bg-white rounded shadow dark:bg-gray-600">
+          <thead className="bg-gray-100 dark:bg-gray-600">
             <tr>
               <th className="py-3 px-4 text-left">Image</th>
               <th className="py-3 px-4 text-left">Title</th>
@@ -139,7 +139,7 @@ const MyItems = () => {
               </tr>
             ) : (
               paginatedItems.map((item) => (
-                <tr key={item._id} className="border-b hover:bg-gray-50">
+                <tr key={item._id} className="border-b hover:bg-gray-500">
                   <td className="py-2 px-4">
                     <img
                       src={item.image}
@@ -172,7 +172,7 @@ const MyItems = () => {
         </table>
       </div>
       {totalPages > 1 && (
-        <div className="flex justify-center mt-6 space-x-2">
+        <div className="flex justify-center mt-6 space-x-2 dark:bg-gray-600">
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i}

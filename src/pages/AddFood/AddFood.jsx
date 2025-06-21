@@ -94,7 +94,7 @@ const AddFood = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded shadow">
+    <div className="max-w-2xl mx-auto mt-10 p-6 dark:bg-gray-600  rounded shadow">
       <h2 className="text-2xl font-bold mb-4 text-center">Add New Food</h2>
       <form onSubmit={handleAddFood} className="space-y-4" noValidate>
         <input
@@ -113,11 +113,11 @@ const AddFood = () => {
         />
         <select
           name="category"
-          className="w-full border px-3 py-2 rounded"
+          className="w-full border px-3 py-2 rounded dark:bg-gray-600"
           required
           defaultValue=""
         >
-          <option value="" disabled>
+          <option value="" className="dark:bg-gray-600">
             Select Category
           </option>
           <option>Dairy</option>
