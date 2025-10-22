@@ -14,7 +14,7 @@
     "axios": "^1.10.0",
     "cookie-parser": "^1.4.7",
     "firebase": "^11.9.1",
-    "framer-motion": "^12.18.1",
+    "framer-motion": "^12.23.24",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.515.0",
     "react": "^19.1.0",

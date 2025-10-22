@@ -6,6 +6,8 @@ import TrustedOrgs from "../../components/TrustedOrgs";
 import TopFoods from "../TopFoods/TopFoods";
 import ExpiringSoon from "../../components/ExpiringSoon";
 import ExpiredFoods from "./ExpiredFoods";
+import FAQSection from "../../components/Faq/Faq";
+import AboutUs from "../../components/About/About";
 
 const slides = [
   {
@@ -36,61 +38,57 @@ const slides = [
 
 const Home = () => {
   return (
-    <main>
-      <section className="relative">
-        <Carousel
-          showThumbs={false}
-          autoPlay
-          infiniteLoop
-          interval={5000}
-          transitionTime={700}
-          showStatus={false}
-          showArrows={false}
-          swipeable
-          emulateTouch
-        >
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className="relative h-[500px] md:h-[600px] w-full"
-              style={{
-                backgroundImage: `url(${slide.imageUrl})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-gray-900 md:px-8 py-20 px-6 rounded-2xl shadow-2xl bg-white bg-opacity-80 backdrop-blur-sm">
-                  <h2 className="text-3xl md:text-5xl font-bold drop-shadow">
-                    {slide.title}
-                  </h2>
-                  <p className="text-lg mt-4 mb-6">{slide.description}</p>
-                  <Link
-                    to={slide.buttonLink}
-                    className={`inline-block px-6 py-3 rounded-lg font-semibold transition
-            ${slide.color === "green"
-                        ? "bg-green-700 hover:bg-green-800 text-white"
-                        : slide.color === "yellow"
-                          ? "bg-yellow-500 hover:bg-yellow-600 text-black"
-                          : "bg-red-600 hover:bg-red-700 text-white"
-                      }`}
-                  >
-                    {slide.buttonText}
-                  </Link>
+    <main className="bg-gray-50">
+      <section className="relative flex justify-center py-8">
+        <div className="w-full max-w-8xl rounded-lg overflow-hidden shadow-lg">
+          <Carousel
+            showThumbs={false}
+            autoPlay
+            infiniteLoop
+            interval={5000}
+            transitionTime={700}
+            showStatus={false}
+            showArrows={false}
+            swipeable
+            emulateTouch
+          >
+            {slides.map((slide, index) => (
+              <div
+                key={index}
+                className="relative h-[500px] md:h-[600px] w-full rounded-lg overflow-hidden"
+                style={{
+                  backgroundImage: `url(${slide.imageUrl})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center md:px-8 py-20 px-6 rounded-2xl shadow-2xl bg-white bg-opacity-80 backdrop-blur-sm">
+                    <h2 className="text-3xl md:text-5xl font-bold drop-shadow">
+                      {slide.title}
+                    </h2>
+                    <p className="text-lg text-gray-500 mt-4 mb-6">{slide.description}</p>
+                    <Link
+                      to={slide.buttonLink}
+                      className="inline-block px-6 py-3 rounded-lg font-semibold transition bg-green-600 hover:bg-green-700 text-white"
+                    >
+                      {slide.buttonText}
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-
-        </Carousel>
+            ))}
+          </Carousel>
+        </div>
       </section>
-      <ExpiredFoods></ExpiredFoods>
-      <ExpiringSoon></ExpiringSoon>
-      <TopFoods></TopFoods>
+
+      <AboutUs />
+      <ExpiredFoods />
+      <ExpiringSoon />
+      <TopFoods />
       <TrustedOrgs />
       <ExtraSections />
-
+      <FAQSection />
     </main>
   );
 };

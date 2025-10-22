@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import MyItems from "../pages/MyItems/MyItems";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import NotFound from "../pages/NotFound/NotFound";
+import FAQSection from "../components/Faq/Faq";
+import AboutUs from "../components/About/About";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
       { path: "fridge", element: <Fridge /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: 'faq', element: <FAQSection /> },
+      { path: 'about', element: <AboutUs></AboutUs> },
       {
         path: "add-food",
         element: (
